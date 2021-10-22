@@ -1,5 +1,7 @@
 # War
 
+![War Screenshot](screenshot.png)
+
 ## Table of Contents
 - [Demo](#demo)
 - [Running Locally](#running-locally)
