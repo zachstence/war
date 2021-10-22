@@ -46,12 +46,22 @@ const rankToChar = (rank: Rank): string => {
     }
 }
 
-const Card: React.FC<CardInfo> = ({rank, suit}) => {
-    return (
-        <div className={classNames("card", suitToColor(suit))}>
-            {rankToChar(rank)}{suitToChar(suit)}
-        </div>
-    );
+export interface CardProps extends CardInfo {
+    faceUp: boolean;
+}
+
+const Card: React.FC<CardProps> = ({rank, suit, faceUp}) => {
+    if (faceUp) {
+        return (
+            <div className={classNames("card", suitToColor(suit))}>
+                {rankToChar(rank)}{suitToChar(suit)}
+            </div>
+        );
+    } else {
+        return (
+            <div className="card face-down" />
+        )
+    }
 };
 
 export default Card;

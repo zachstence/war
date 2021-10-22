@@ -23,7 +23,7 @@ class Deck {
     private init(): void {
         for (const suit of SUITS) {
             for (const rank of RANKS) {
-                this.cards.push({suit, rank: rank});
+                this.cards.push({suit, rank});
             }
         }
     }

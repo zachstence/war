@@ -1,13 +1,13 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import Deck, { CardInfo } from "../../game/Deck/Deck";
-import Card from "../Card/Card";
+import Card, { CardProps } from "../Card/Card";
 
 const Game: React.FC = () => {
     const [p1Deck, setP1Deck] = useState<Deck>();
-    const [p1Played, setP1Played] = useState<CardInfo[]>([]);
+    const [p1Played, setP1Played] = useState<CardProps[]>([]);
 
     const [p2Deck, setP2Deck] = useState<Deck>();
-    const [p2Played, setP2Played] = useState<CardInfo[]>([]);
+    const [p2Played, setP2Played] = useState<CardProps[]>([]);
 
     const [isWar, setIsWar] = useState<boolean>(false);
 
@@ -30,13 +30,13 @@ const Game: React.FC = () => {
         setCanPlay(false);
 
         if (!isWar) { // If not war, each player draws and plays 1 card
-            setP1Played([p1Deck.draw()]);
-            setP2Played([p2Deck.draw()]);
+            setP1Played([{...p1Deck.draw(), faceUp: true}]);
+            setP2Played([{...p2Deck.draw(), faceUp: true}]);
         } else { // If war, each player draws and plays a face down card, then a face up card
             if (!p1Played || !p2Played) throw new Error();
 
-            setP1Played([...p1Played, p1Deck.draw(), p1Deck.draw()]);
-            setP2Played([...p2Played, p2Deck.draw(), p2Deck.draw()]);
+            setP1Played([...p1Played, {...p1Deck.draw(), faceUp: false}, {...p1Deck.draw(), faceUp: true}]);
+            setP2Played([...p2Played, {...p2Deck.draw(), faceUp: false}, {...p2Deck.draw(), faceUp: true}]);
         }
     };
 
@@ -68,9 +68,9 @@ const Game: React.FC = () => {
         setCanPlay(true);
     };
 
-    const renderCards = (played: CardInfo[]): ReactElement[] => {
+    const renderCards = (played: CardProps[]): ReactElement[] => {
         return played.map(card => (
-            <Card key={`${card.rank}${card.suit}`} suit={card.suit} rank={card.rank} />
+            <Card key={`${card.rank}${card.suit}`} {...card} />
         ));
     }
 
