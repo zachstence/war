@@ -1,0 +1,17 @@
+@import "../base.scss";
+
+body {
+    height: 100vh;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+#root {
+    height: 100%;
+    background-color: $dark;
+}
+
+* {
+    color: white;
+    box-sizing: border-box;
+}

@@ -1,6 +1,7 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import Deck, { CardInfo } from "../../game/Deck/Deck";
+import Deck from "../../game/Deck/Deck";
 import Card, { CardProps } from "../Card/Card";
+import "./Game.scss";
 
 const Game: React.FC = () => {
     const [p1Deck, setP1Deck] = useState<Deck>();
@@ -35,8 +36,16 @@ const Game: React.FC = () => {
         } else { // If war, each player draws and plays a face down card, then a face up card
             if (!p1Played || !p2Played) throw new Error();
 
-            setP1Played([...p1Played, {...p1Deck.draw(), faceUp: false}, {...p1Deck.draw(), faceUp: true}]);
-            setP2Played([...p2Played, {...p2Deck.draw(), faceUp: false}, {...p2Deck.draw(), faceUp: true}]);
+            setP1Played([
+                ...p1Played,
+                {...p1Deck.draw(), faceUp: false},
+                {...p1Deck.draw(), faceUp: true}
+            ]);
+            setP2Played([
+                ...p2Played,
+                {...p2Deck.draw(), faceUp: false},
+                {...p2Deck.draw(), faceUp: true}
+            ]);
         }
     };
 
@@ -47,19 +56,17 @@ const Game: React.FC = () => {
         const p2Card = p2Played[p2Played.length - 1];
 
         if (p1Card.rank === p2Card.rank) { // If ranks are equal, enter war state
-            console.log("war");
             setIsWar(true);
         } else {
             if (p1Card.rank > p2Card.rank) { // Player 1 wins this round
-                console.log("p1");
                 p1Deck.pushBottom(...p1Played, ...p2Played);
             } else if (p2Card.rank > p1Card.rank) { // Player 2 wins this round
-                console.log("p2");
                 p2Deck.pushBottom(...p2Played, ...p1Played);
             }
 
             setP1Played([]);
             setP2Played([]);
+            setIsWar(false);
             
             // TODO
             if (p1Deck.size() === 0 || p2Deck.size() === 0) setGameOver(true);
@@ -77,25 +84,26 @@ const Game: React.FC = () => {
     if (p1Deck && p2Deck) {
         return (
             <div className="game">
-                Player 1
-                <br />
-                {p1Deck.size()}
-                <br />
-                {p1Played && renderCards(p1Played)}
-                <br />
-                {canPlay
-                    ? <button onClick={play}>Play</button>
-                    : <button onClick={evaluate}>Evaluate</button>}
-                <br />
-                Player 2
-                <br />
-                {p2Deck.size()}
-                <br />
-                {p2Played && renderCards(p2Played)}
+                <h1>WAR</h1>
+                <div className="player left">
+                    <h2>Player 1</h2>
+                    <h3>Cards: {p1Deck.size()}</h3>
+                    <div className="played-cards">{renderCards(p1Played)}</div>
+                </div>
+                <div className="middle">
+                    {canPlay
+                        ? <button onClick={play}>Play</button>
+                        : <button onClick={evaluate}>Evaluate</button>}
+                </div>
+                <div className="player right">
+                    <h2>Player 2</h2>
+                    <h3>Cards: {p2Deck.size()}</h3>
+                    <div className="played-cards">{renderCards(p2Played)}</div>
+                </div>
             </div>
         )
     } else if (gameOver) {
-        return <div>Game Over</div>;
+        return <div className="game-over">Game Over</div>;
     } else {
         return null;
     }
