@@ -3,7 +3,7 @@ import Game from './Game/Game';
 
 import "./App.scss";
 
-function App(): JSX.Element {
+const App: React.FC = () => {
   return (
     <div className="app">
       <header><h1>WAR</h1></header>
@@ -15,6 +15,6 @@ function App(): JSX.Element {
       </footer>
     </div>
   )
-}
+};
 
 export default App;
