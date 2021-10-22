@@ -2,6 +2,11 @@ import React from "react";
 import "./Card.scss";
 import { CardInfo, Rank, Suit } from "../../Deck/Deck";
 
+/**
+ * Converts a Suit to a character to show on a card.
+ * @param suit The suit to convert to a character.
+ * @returns An ASCII character representation of the given suit.
+ */
 const suitToChar = (suit: Suit): string => {
     switch (suit) {
         case "spades": return "♠";
@@ -11,6 +16,12 @@ const suitToChar = (suit: Suit): string => {
     }
 }
 
+/**
+ * Converts a Rank to a character to show on a card.
+ * 1 becomes A, 2-10 are unchanged, 11 becomes J, 12 becomes Q, and 13 becomes K.
+ * @param rank The rank to convert to a character.
+ * @returns  An ASCII character representation of the given rank.
+ */
 const rankToChar = (rank: Rank): string => {
     switch (rank) {
         case 1:
@@ -38,6 +49,10 @@ export interface CardProps extends CardInfo {
     faceUp: boolean;
 }
 
+/**
+ * Renders a playing card with a given suit and rank. The suit and rank are not rendered
+ * if faceUp=false.
+ */
 const Card: React.FC<CardProps> = ({rank, suit, faceUp}) => {
     if (faceUp) {
         return (

@@ -3,6 +3,10 @@ import Deck from "../../Deck/Deck";
 import Card, { CardProps } from "../Card/Card";
 import "./Game.scss";
 
+/**
+ * Renders a playable War game, where two players fight cards against each other.
+ * Rules: https://bicyclecards.com/how-to-play/war/
+ */
 const Game: React.FC = () => {
     const [p1Deck, setP1Deck] = useState<Deck>();
     const [p1Played, setP1Played] = useState<CardProps[]>([]);
@@ -16,6 +20,9 @@ const Game: React.FC = () => {
 
     const [gameOver, setGameOver] = useState<boolean>(true);
 
+    /**
+     * Sets up each player with half of a standard deck of playing cards.
+     */
     const init = (): void => {
         const fullDeck = new Deck();
         fullDeck.shuffle();
@@ -25,8 +32,12 @@ const Game: React.FC = () => {
         setP2Deck(d2);
     }
 
+    // Initialize on component mount
     useEffect(init, []);
 
+    /**
+     * Plays one card from each player, or plays 2 cards in the event of a "war".
+     */
     const play = (): void => {
         if (!p1Deck || !p2Deck) throw new Error(); // TODO
 
@@ -51,6 +62,11 @@ const Game: React.FC = () => {
         }
     };
 
+    /**
+     * Evaluates the cards played by each player and determines who wins the round, then resets
+     * the played cards so players can play another round.
+     * Ends the game if either player has 0 cards in their deck.
+     */
     const evaluate = (): void => {
         if (!p1Played || !p2Played || !p1Deck || !p2Deck) throw new Error(); // TODO
 
@@ -77,6 +93,10 @@ const Game: React.FC = () => {
         setCanPlay(true);
     };
 
+    /**
+     * Renders a player's played cards.
+     * @param played The props of cards to render.
+     */
     const renderCards = (played: CardProps[]): ReactElement[] => {
         return played.map(card => (
             <Card key={`${card.rank}${card.suit}`} {...card} />
