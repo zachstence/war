@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import Deck from "../../game/Deck/Deck";
+import Deck from "../../Deck/Deck";
 import Card, { CardProps } from "../Card/Card";
 import "./Game.scss";
 
