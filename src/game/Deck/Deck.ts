@@ -12,7 +12,15 @@ export interface CardInfo {
 class Deck {
     private cards: CardInfo[] = [];
 
-    init(): void {
+    constructor(cards?: CardInfo[]) {
+        if (cards) {
+            this.cards = cards;
+        } else {
+            this.init();
+        }
+    }
+
+    private init(): void {
         for (const suit of SUITS) {
             for (const value of RANKS) {
                 this.cards.push({suit, rank: value});
@@ -26,8 +34,8 @@ class Deck {
         return card;
     }
 
-    pushBottom(card: CardInfo): void {
-        this.cards.push(card);
+    pushBottom(...cards: CardInfo[]): void {
+        this.cards.push(...cards);
     }
 
     shuffle(): void {
@@ -37,12 +45,21 @@ class Deck {
         }
     }
 
-    setCards(cards: CardInfo[]): void {
-        this.cards = cards;
+    split(): [Deck, Deck] {
+        const half1 = this.cards.slice(0, (this.cards.length) / 2);
+        const half2 = this.cards.slice(this.cards.length / 2, this.cards.length);
+        return [
+            new Deck(half1),
+            new Deck(half2)
+        ];
     }
 
     getCards(): CardInfo[] {
         return this.cards;
+    }
+
+    size(): number {
+        return this.cards.length;
     }
 }
 

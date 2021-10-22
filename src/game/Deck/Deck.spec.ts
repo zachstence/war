@@ -60,7 +60,6 @@ describe("Deck", () => {
 
     beforeEach(() => {
         deck = new Deck();
-        deck.init();
     });
 
     it("should be initialized with one card from each suit and rank", () => {
@@ -115,5 +114,12 @@ describe("Deck", () => {
         expect(shuffled2).not.toEqual(shuffled4);
 
         expect(shuffled3).not.toEqual(shuffled4);
+    });
+
+    test("split() should split the deck in half", () => {
+        const [h1, h2] = deck.split();
+
+        expect(h1.getCards().length).toEqual(26);
+        expect(h2.getCards().length).toEqual(26);
     });
 });
