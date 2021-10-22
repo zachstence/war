@@ -1,9 +1,9 @@
-import Deck, { Card } from "./Deck";
+import Deck, { CardInfo } from "./Deck";
 
 describe("Deck", () => {
     let deck: Deck;
 
-    const unshuffledCards: Card[] = [
+    const unshuffledCards: CardInfo[] = [
         {suit: "spades", rank: 1},
         {suit: "spades", rank: 2},
         {suit: "spades", rank: 3},
@@ -78,7 +78,7 @@ describe("Deck", () => {
     });
 
     test("pushBottom() should add a given card to the bottom of the deck", () => {
-        const card: Card = {suit: "clubs", rank: 8};
+        const card: CardInfo = {suit: "clubs", rank: 8};
         const before = [...deck.getCards()];
 
         deck.pushBottom(card);

@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import {Card, Rank, Suit} from "../../Deck/Deck";
+import {CardInfo, Rank, Suit} from "../../Deck/Deck";
 import "./Card.scss";
 
 const suitToChar = (suit: Suit): string => {
@@ -46,11 +46,7 @@ const rankToChar = (rank: Rank): string => {
     }
 }
 
-interface CardCompProps {
-    card: Card;
-}
-
-const CardComp: React.FC<CardCompProps> = ({card: {rank, suit}}) => {
+const CardComp: React.FC<CardInfo> = ({rank, suit}) => {
     return (
         <div className={classNames("card", suitToColor(suit))}>
             {rankToChar(rank)}{suitToChar(suit)}

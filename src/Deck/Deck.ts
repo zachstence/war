@@ -4,13 +4,13 @@ export type Suit = (typeof SUITS)[number];
 const RANKS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] as const;
 export type Rank =  (typeof RANKS)[number];
 
-export interface Card {
+export interface CardInfo {
     suit: Suit;
     rank: Rank;
 }
 
 class Deck {
-    private cards: Card[] = [];
+    private cards: CardInfo[] = [];
 
     constructor() {
         this.reset();
@@ -24,11 +24,11 @@ class Deck {
         }
     }
 
-    draw(): Card | undefined {
+    draw(): CardInfo | undefined {
         return this.cards.shift();
     }
 
-    pushBottom(card: Card): void {
+    pushBottom(card: CardInfo): void {
         this.cards.push(card);
     }
 
@@ -39,7 +39,7 @@ class Deck {
         }
     }
 
-    getCards(): Card[] {
+    getCards(): CardInfo[] {
         return this.cards;
     }
 }
