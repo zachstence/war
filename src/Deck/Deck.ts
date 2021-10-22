@@ -46,6 +46,7 @@ class Deck {
     /**
      * Removes and returns the card on top of the deck.
      * @returns The card that was drawn.
+     * @throws An error if the deck is empty when drawing.
      */
     draw(): CardInfo {
         const card = this.cards.shift();
