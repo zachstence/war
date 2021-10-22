@@ -1,16 +1,29 @@
 import React from "react";
+import classNames from "classnames";
 import {Card, Rank, Suit} from "../../Deck/Deck";
+import "./Card.scss";
 
-const suitToChar = (suit: Suit) => {
+const suitToChar = (suit: Suit): string => {
     switch (suit) {
-        case "spades": return "♤";
-        case "hearts": return "♡";
-        case "diamonds": return "♢";
-        case "clubs": return "♧";
+        case "spades": return "♠";
+        case "hearts": return "♥";
+        case "diamonds": return "♦";
+        case "clubs": return "♣";
     }
 }
 
-const rankToChar = (rank: Rank) => {
+const suitToColor = (suit: Suit): string => {
+    switch (suit) {
+        case "spades":
+        case "clubs":
+            return "black";
+        case "hearts":
+        case "diamonds":
+            return "red";
+    }
+}
+
+const rankToChar = (rank: Rank): string => {
     switch (rank) {
         case 1:
             return "A";
@@ -39,9 +52,8 @@ interface CardCompProps {
 
 const CardComp: React.FC<CardCompProps> = ({card: {rank, suit}}) => {
     return (
-        <div className="card">
-            {rankToChar(rank)}
-            {suitToChar(suit)}
+        <div className={classNames("card", suitToColor(suit))}>
+            {rankToChar(rank)}{suitToChar(suit)}
         </div>
     );
 };
