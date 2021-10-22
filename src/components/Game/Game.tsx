@@ -24,12 +24,19 @@ const Game: React.FC = () => {
      * Sets up each player with half of a standard deck of playing cards.
      */
     const init = (): void => {
+        setGameOver(false);
+        setIsWar(false);
+        setP1Played([]);
+        setP2Played([]);
+        
         const fullDeck = new Deck();
         fullDeck.shuffle();
 
         const [d1, d2] = fullDeck.split();
         setP1Deck(d1);
         setP2Deck(d2);
+
+        setCanPlay(true);
     }
 
     // Initialize on component mount
