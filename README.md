@@ -1,6 +1,6 @@
 # War
 
-![War Screenshot](screenshot.png)
+![War Screenshot](https://github.com/zachstence/war/blob/main/screenshot.png)
 
 ## Table of Contents
 - [Demo](#demo)
