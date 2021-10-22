@@ -5,6 +5,7 @@
 - [Running Locally](#running-locally)
 - [Technology](#technology)
 - [Architecture](#architecture)
+- [Next Steps](#next-steps)
 
 ## Demo
 You can access a live version of the game at [zachstence.github.io/war](https://zachstence.github.io/war).
