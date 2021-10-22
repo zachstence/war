@@ -22,8 +22,8 @@ class Deck {
 
     private init(): void {
         for (const suit of SUITS) {
-            for (const value of RANKS) {
-                this.cards.push({suit, rank: value});
+            for (const rank of RANKS) {
+                this.cards.push({suit, rank: rank});
             }
         }
     }
