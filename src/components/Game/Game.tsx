@@ -25,7 +25,7 @@ const Game: React.FC = () => {
         setP2Deck(d2);
     }
 
-    // useEffect(init, []);
+    useEffect(init, []);
 
     const play = (): void => {
         if (!p1Deck || !p2Deck) throw new Error(); // TODO
