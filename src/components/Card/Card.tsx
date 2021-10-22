@@ -1,5 +1,4 @@
 import React from "react";
-import classNames from "classnames";
 import "./Card.scss";
 import { CardInfo, Rank, Suit } from "../../game/Deck/Deck";
 
@@ -9,17 +8,6 @@ const suitToChar = (suit: Suit): string => {
         case "hearts": return "♥";
         case "diamonds": return "♦";
         case "clubs": return "♣";
-    }
-}
-
-const suitToColor = (suit: Suit): string => {
-    switch (suit) {
-        case "spades":
-        case "clubs":
-            return "black";
-        case "hearts":
-        case "diamonds":
-            return "red";
     }
 }
 
@@ -53,7 +41,7 @@ export interface CardProps extends CardInfo {
 const Card: React.FC<CardProps> = ({rank, suit, faceUp}) => {
     if (faceUp) {
         return (
-            <div className={classNames("card", suitToColor(suit))}>
+            <div className="card">
                 {rankToChar(rank)}{suitToChar(suit)}
             </div>
         );
