@@ -35,15 +35,6 @@
 
         background-color: $gray-4;
         border-radius: 2rem;
-
-        
-        &.left {
-            grid-area: left;
-        }
-
-        &.right {
-            grid-area: right;
-        }
     }
 
     .played-cards {
