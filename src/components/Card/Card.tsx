@@ -46,7 +46,7 @@ const rankToChar = (rank: Rank): string => {
     }
 }
 
-const CardComp: React.FC<CardInfo> = ({rank, suit}) => {
+const Card: React.FC<CardInfo> = ({rank, suit}) => {
     return (
         <div className={classNames("card", suitToColor(suit))}>
             {rankToChar(rank)}{suitToChar(suit)}
@@ -54,4 +54,4 @@ const CardComp: React.FC<CardInfo> = ({rank, suit}) => {
     );
 };
 
-export default CardComp;
+export default Card;
