@@ -49,7 +49,7 @@ class Deck {
      */
     draw(): CardInfo {
         const card = this.cards.shift();
-        if (!card) throw new Error(); // TODO write helpful error message
+        if (!card) throw new Error("Cannot draw from an empty deck");
         return card;
     }
 

@@ -39,7 +39,7 @@ const Game: React.FC = () => {
      * Plays one card from each player, or plays 2 cards in the event of a "war".
      */
     const play = (): void => {
-        if (!p1Deck || !p2Deck) throw new Error(); // TODO
+        if (!p1Deck || !p2Deck) throw new Error("Cannot play with an empty deck");
 
         setCanPlay(false);
 
@@ -68,7 +68,7 @@ const Game: React.FC = () => {
      * Ends the game if either player has 0 cards in their deck.
      */
     const evaluate = (): void => {
-        if (!p1Played || !p2Played || !p1Deck || !p2Deck) throw new Error(); // TODO
+        if (!p1Played || !p2Played || !p1Deck || !p2Deck) throw new Error("Cannot evaluate with empty played cards or empty deck");
 
         const p1Card = p1Played[p1Played.length - 1];
         const p2Card = p2Played[p2Played.length - 1];
@@ -86,7 +86,6 @@ const Game: React.FC = () => {
             setP2Played([]);
             setIsWar(false);
             
-            // TODO
             if (p1Deck.size() === 0 || p2Deck.size() === 0) setGameOver(true);
         }
 
