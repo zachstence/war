@@ -10,7 +10,7 @@ function App(): JSX.Element {
       <Game />
       <footer>
         <a href="https://github.com/zachstence/war">
-          <img src="/github.png" alt="GitHub Icon"/>
+          <img src="github.png" alt="GitHub Icon"/>
         </a>
       </footer>
     </div>
