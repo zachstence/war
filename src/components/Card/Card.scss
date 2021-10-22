@@ -18,3 +18,14 @@
     color: $off-white;
     border-color: $off-white;
 }
+
+@media screen and (max-width: 600px) {
+    .card {
+        height: 7rem;
+        width: 5rem;
+        font-size: 2rem;
+        padding: 0 0.2rem;
+        border: 2px solid;
+        border-radius: 0.5rem;
+    }
+}

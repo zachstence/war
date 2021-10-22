@@ -4,14 +4,45 @@ body {
     height: 100vh;
     margin: 0;
     font-family: 'Roboto', sans-serif;
+    background-color: $gray-5;
 }
 
 #root {
     height: 100%;
-    background-color: $gray-5;
 }
 
 * {
     color: white;
     box-sizing: border-box;
+}
+
+.app {
+    height: 100%;
+
+    display: grid;
+    grid-template-rows: 1fr 10fr 1fr;
+
+    header {
+        text-align: center;
+    }
+
+    footer {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: flex-end;
+        padding: 0.1rem;
+
+        a img {
+            height: 3rem;
+            width: 3rem;
+            padding: 0.2rem;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 2rem;
+    
+            &:hover {
+                border: 2px solid white;
+            }
+        }
+    }
 }

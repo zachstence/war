@@ -83,8 +83,8 @@ const Game: React.FC = () => {
 
     if (p1Deck && p2Deck) {
         return (
-            <div className={`game${isWar ? " war" : ""}`}>
-                <h1>WAR</h1>
+            <main className={`game${isWar ? " war" : ""}`}>
+                {/* <h1>WAR</h1> */}
                 <div className="player left">
                     <h2>PLAYER 1</h2>
                     <p>{p1Deck.size()} cards remaining</p>
@@ -100,7 +100,7 @@ const Game: React.FC = () => {
                     <p>{p2Deck.size()} cards remaining</p>
                     <div className="played-cards">{renderCards(p2Played)}</div>
                 </div>
-            </div>
+            </main>
         )
     } else if (gameOver) {
         return <div className="game-over">Game Over</div>;
