@@ -12,11 +12,7 @@ export interface CardInfo {
 class Deck {
     private cards: CardInfo[] = [];
 
-    constructor() {
-        this.reset();
-    }
-
-    reset(): void {
+    init(): void {
         for (const suit of SUITS) {
             for (const value of RANKS) {
                 this.cards.push({suit, rank: value});
@@ -24,8 +20,10 @@ class Deck {
         }
     }
 
-    draw(): CardInfo | undefined {
-        return this.cards.shift();
+    draw(): CardInfo {
+        const card = this.cards.shift();
+        if (!card) throw new Error(); // TODO write helpful error message
+        return card;
     }
 
     pushBottom(card: CardInfo): void {
@@ -37,6 +35,10 @@ class Deck {
             const j = Math.floor(Math.random() * (i + 1));
             [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
         }
+    }
+
+    setCards(cards: CardInfo[]): void {
+        this.cards = cards;
     }
 
     getCards(): CardInfo[] {

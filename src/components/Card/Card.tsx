@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
-import {CardInfo, Rank, Suit} from "../../Deck/Deck";
 import "./Card.scss";
+import { CardInfo, Rank, Suit } from "../../game/Deck/Deck";
 
 const suitToChar = (suit: Suit): string => {
     switch (suit) {
