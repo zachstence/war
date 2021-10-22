@@ -18,13 +18,13 @@ const Game: React.FC = () => {
 
     const [canPlay, setCanPlay] = useState<boolean>(true);
 
-    const [gameOver, setGameOver] = useState<boolean>(false);
+    const [winner, setWinner] = useState<number>();
 
     /**
      * Sets up each player with half of a standard deck of playing cards.
      */
     const init = (): void => {
-        setGameOver(false);
+        setWinner(undefined);
         setIsWar(false);
         setP1Played([]);
         setP2Played([]);
@@ -51,10 +51,19 @@ const Game: React.FC = () => {
         setCanPlay(false);
 
         if (!isWar) { // If not war, each player draws and plays 1 card
+            // Check to make sure players have enough cards to play
+            if (p1Deck.size() < 1) setWinner(2);
+            if (p2Deck.size() < 1) setWinner(1);
+
             setP1Played([{...p1Deck.draw(), faceUp: true}]);
             setP2Played([{...p2Deck.draw(), faceUp: true}]);
         } else { // If war, each player draws and plays a face down card, then a face up card
             if (!p1Played || !p2Played) throw new Error();
+
+            // Check to make sure players have enough cards to play
+            if (p1Deck.size() < 2) setWinner(2);
+            if (p2Deck.size() < 2) setWinner(1);
+            
 
             setP1Played([
                 ...p1Played,
@@ -93,7 +102,8 @@ const Game: React.FC = () => {
             setP2Played([]);
             setIsWar(false);
             
-            if (p1Deck.size() === 0 || p2Deck.size() === 0) setGameOver(true);
+            if (p1Deck.size() === 0) setWinner(2);
+            if (p2Deck.size() === 0) setWinner(1);
         }
 
         setCanPlay(true);
@@ -109,7 +119,7 @@ const Game: React.FC = () => {
         ));
     }
 
-    if (!gameOver && p1Deck && p2Deck) {
+    if (!winner && p1Deck && p2Deck) {
         return (
             <main className={`game${isWar ? " war" : ""}`}>
                 <div className="player">
@@ -129,7 +139,7 @@ const Game: React.FC = () => {
                 </div>
             </main>
         )
-    } else if (gameOver) {
+    } else if (winner) {
         return (
             <main className="game-over">
                 <h2>Game Over</h2>
