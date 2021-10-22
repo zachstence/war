@@ -14,16 +14,18 @@ const Game: React.FC = () => {
 
     const [canPlay, setCanPlay] = useState<boolean>(true);
 
-    const [gameOver, setGameOver] = useState<boolean>(false);
+    const [gameOver, setGameOver] = useState<boolean>(true);
 
-    useEffect(() => {
+    const init = (): void => {
         const fullDeck = new Deck();
         fullDeck.shuffle();
 
         const [d1, d2] = fullDeck.split();
         setP1Deck(d1);
         setP2Deck(d2);
-    }, []);
+    }
+
+    // useEffect(init, []);
 
     const play = (): void => {
         if (!p1Deck || !p2Deck) throw new Error(); // TODO
@@ -103,7 +105,13 @@ const Game: React.FC = () => {
             </main>
         )
     } else if (gameOver) {
-        return <div className="game-over">Game Over</div>;
+        return (
+            <main className="game-over">
+                <h2>Game Over</h2>
+                {p1Deck?.size() === 0 ? <h3>Player 2 Won!</h3> : <h3>Player 1 Won!</h3>}
+                <button onClick={init}>Play Again</button>
+            </main>
+        );
     } else {
         return null;
     }
