@@ -1,8 +1,8 @@
 import React from 'react';
-import Card from './Card/Card';
+import Game from './Game/Game';
 
 function App(): JSX.Element {
-  return <Card suit="hearts" rank={13} />;
+  return <Game />
 }
 
 export default App;
