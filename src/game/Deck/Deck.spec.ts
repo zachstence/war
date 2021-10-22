@@ -60,6 +60,7 @@ describe("Deck", () => {
 
     beforeEach(() => {
         deck = new Deck();
+        deck.init();
     });
 
     it("should be initialized with one card from each suit and rank", () => {
