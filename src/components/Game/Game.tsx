@@ -18,7 +18,7 @@ const Game: React.FC = () => {
 
     const [canPlay, setCanPlay] = useState<boolean>(true);
 
-    const [gameOver, setGameOver] = useState<boolean>(true);
+    const [gameOver, setGameOver] = useState<boolean>(false);
 
     /**
      * Sets up each player with half of a standard deck of playing cards.
@@ -102,7 +102,7 @@ const Game: React.FC = () => {
         ));
     }
 
-    if (p1Deck && p2Deck) {
+    if (!gameOver && p1Deck && p2Deck) {
         return (
             <main className={`game${isWar ? " war" : ""}`}>
                 <div className="player">
